@@ -88,7 +88,12 @@ const App = () => {
           onChange={(e) => setInputTodo(e.target.value)}
         />
 
-        <button type="submit">Add</button>
+        <button
+          type="submit"
+          className="bg-blue-500 text-white px-4 py-2 rounded mb-2 "
+        >
+          Add
+        </button>
       </form>
 
       {/* Task List */}
@@ -101,12 +106,17 @@ const App = () => {
             {editId === task.id ? (
               <>
                 <input
-                  className="border p-2 rounded w-full mb-3"
+                  className="border p-2 rounded w-sm mb-3"
                   value={editText}
                   onChange={(e) => setEditText(e.target.value)}
                 />
 
-                <button onClick={() => saveEdit(task.id)}>Save ✅</button>
+                <button
+                  onClick={() => saveEdit(task.id)}
+                  className="border p-2 rounded mx-auto bg-green-500 text-white mb-3"
+                >
+                  Save ✅
+                </button>
               </>
             ) : (
               <>
