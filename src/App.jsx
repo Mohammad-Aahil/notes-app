@@ -8,9 +8,19 @@ const App = () => {
   function addTasks(e) {
     e.preventDefault();
     if (!inputTodo.trim()) return;
-    setTasks([...tasks, inputTodo]);
+    setTasks([
+      ...tasks,
+      {
+        id: Date.now(),
+        todoText: inputTodo,
+      },
+    ]);
     setInputTodo("");
   }
+
+  const deleteTasks = (idToDelete) => {
+    return setTasks(tasks.filter((task) => task.id !== idToDelete));
+  };
   return (
     <div>
       <form onSubmit={addTasks}>
@@ -22,8 +32,17 @@ const App = () => {
         <button type="submit">Add</button>
       </form>
 
-      {tasks.map((t, index) => (
-        <li key={index}>{t}</li>
+      {tasks.map((task) => (
+        <li key={task.id}>
+          {task.todoText}
+          <button
+            onClick={() => {
+              deleteTasks(task.id);
+            }}
+          >
+            Delete ❌
+          </button>
+        </li>
       ))}
     </div>
   );
