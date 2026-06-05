@@ -10,6 +10,7 @@ const App = () => {
     return saved ? JSON.parse(saved) : [];
   });
 
+  // Save Tasks in LS
   useEffect(() => {
     localStorage.setItem("tasks", JSON.stringify(tasks));
   }, [tasks]);
@@ -19,6 +20,9 @@ const App = () => {
 
   // Stores edited text
   const [editText, setEditText] = useState("");
+
+  // Enabling Search Filter
+  const [search, setSearch] = useState("");
 
   // Add a new task
   const addTask = (e) => {
@@ -57,9 +61,21 @@ const App = () => {
     setEditText("");
   };
 
+  // Search Filtering Function
+  const filteredTasks = tasks.filter((task) =>
+    task.todoText.toLowerCase().includes(search.toLowerCase()),
+  );
+
   return (
     <div>
       <h2>Todo App</h2>
+
+      {/* Search Bar */}
+      <input
+        placeholder="Search..."
+        value={search}
+        onChange={(e) => setSearch(e.target.value)}
+      />
 
       {/* Add Task Form */}
       <form onSubmit={addTask}>
@@ -75,7 +91,7 @@ const App = () => {
 
       {/* Task List */}
       <ul>
-        {tasks.map((task) => (
+        {filteredTasks.map((task) => (
           <li key={task.id}>
             {editId === task.id ? (
               <>
