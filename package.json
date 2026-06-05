@@ -3,7 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "homepage": "https://github.com/Mohammad-Aahil/notes-app",
+  "homepage": "https://mohammad-aahil.github.io/notes-app/",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
